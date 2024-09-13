@@ -1,0 +1,121 @@
+---
+title: "Exploring Cheddar"
+output: html_document
+date: "2024-08-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the tidyverse package
+pacman::p_load(tidyverse)
+
+library(readxl)
+library(cheddar)
+
+# Load in stream data 
+contenido <- read_excel("contenido.xlsx")
+```
+
+## Exploring Cheddar
+
+```{r sampledata}
+data(TL84)
+nps <- NPS(TL84) #dataframe of 
+summary
+
+NumberOfNodes(TL84) # equivalent to # taxon
+NumberOfNodesByClass(TL84)
+FractionOfNodesByClass(TL84)
+
+NumberOfTrophicLinks(TL84)
+LinkageDensity(TL84)
+DirectedConnectance(TL84)
+
+PlotWebByLevel(TL84)
+#PlotWagonWheel(TL84)
+```
+
+## Urban Stream Data 
+Using the stream data collected in an urban area, we will be looking at the:
+
+- Number of Species (S) NumberOfNodesByClass() ?
+- Number of Links (L) NumberOfTrophicLinks()
+- Linkage Density (L/S) 
+- Connectance (C=L/S^2)
+
+okay this is not working, but i need to read in each sheet and then make a data frame, then turn it into a community object (?)
+
+So each node is one species 
+one big all inclusive food web, a second food web that excludes links that have less than 5% in the diet (or something) because some matter can come from the prey. for instance, a dragonfly is a predator but sometimes when they catch their prey they also catch algae that come with inverebrates that they are eating. This 5% number is just made up, its not really based on anything lol(trichotera are herbivores so they will get algae from eating these organisms... can pass into the stomach and be included in the food intake even tho they are not actually eating algae)
+
+```{r practice}
+dir <- "/Users/reillyconnelly/Desktop/THESIS"
+# Manually read the nodes.csv file
+nodes_data <- read.csv("nodes.csv", header = TRUE, stringsAsFactors = FALSE) #species column must be named "node'
+links_data <- read.csv("links.csv", header = TRUE, stringsAsFactors = FALSE) #columns must be named 'resource' and 'consumer'
+
+food_web <- Community(
+  properties = list(
+    title = "My Food Web",
+    location = "Costa Rica",     # Overall community location
+    ecosystem = "Tropical Rainforest",
+    sampling_year = 2023),
+  nodes = nodes_data ,# Provide nodes directly
+  trophic.links = links_data          # Provide trophic links directly
+)
+
+
+
+# Check if the community loaded correctly
+summary(food_web)
+
+#YIPPEE
+
+NumberOfNodes(food_web) # equivalent to # taxon
+NumberOfNodesByClass(food_web)
+FractionOfNodesByClass(food_web)
+
+NumberOfTrophicLinks(food_web)
+LinkageDensity(food_web)
+DirectedConnectance(food_web)
+
+PlotWebByLevel(food_web)
+```
+For the nodes data, I will be just taking the average of the mm and putting it in a new excel sheet 
+For the links, I am including each food item that was observed in the stomach (excluding 'other'). Later on, I will make a new analysis removing food items that were not significant in the diet
+
+```{r urbanstream}
+dir <- "/Users/reillyconnelly/Desktop/THESIS"
+# Manually read the nodes.csv file
+urban_nodes <- read.csv("urban_nodes.csv", header = TRUE, stringsAsFactors = FALSE) 
+urban_links <- read.csv("urban_links.csv", header = TRUE, stringsAsFactors = FALSE)
+
+urban_web <- Community(
+  properties = list(
+    title = "Urban Stream Food Web",
+    location = "Costa Rica",     # Overall community location
+    ecosystem = "Tropical Rainforest",
+    sampling_year = 2023),
+  nodes = urban_nodes ,# Provide nodes directly
+  trophic.links = urban_links          # Provide trophic links directly
+)
+
+
+
+# Check if the community loaded correctly
+summary(urban_web)
+
+#YIPPEE
+
+NumberOfNodes(urban_web) # equivalent to # taxon
+NumberOfNodesByClass(urban_web)
+FractionOfNodesByClass(urban_web)
+
+NumberOfTrophicLinks(urban_web)
+LinkageDensity(urban_web)
+DirectedConnectance(urban_web)
+
+PlotWebByLevel(urban_web)
+```
+
