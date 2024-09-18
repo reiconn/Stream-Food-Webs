@@ -5,12 +5,12 @@ Americabaetis,FPOM
 Americabaetis,Animal tissue
 Americabaetis,Diatoms
 Americabaetis,Alga
-Caenis ,Fungi
-Caenis ,Amorphous detritus
-Caenis ,FPOM
-Caenis ,Animal tissue
-Caenis ,Diatoms
-Caenis ,Alga
+Caenis,Fungi
+Caenis,Amorphous detritus
+Caenis,FPOM
+Caenis,Animal tissue
+Caenis,Diatoms
+Caenis,Alga
 Orthocladinae,Fungi
 Orthocladinae,Amorphous detritus
 Orthocladinae,FPOM
@@ -59,7 +59,7 @@ Farrodes taino,Diatoms
 Farrodes taino,Alga
 Macrothemis,Fungi
 Macrothemis,Amorphous detritus
-Macrothemis,Plant tissue 
+Macrothemis,Plant tissue
 Macrothemis,Animal tissue
 Macrothemis,Diatoms
 Macrothemis,Alga
@@ -161,3 +161,106 @@ Forcypominae,FPOM
 Forcypominae,Animal tissue
 Forcypominae,Diatoms
 Forcypominae,Alga
+Dajao,Alga verde
+Dajao,Alga roja
+Dajao,Diatoms
+Dajao,Chironomidae
+Dajao,Chironomi
+Dajao,Tanypodinae
+Dajao,Tanitarsini
+Dajao,Ortochladiinae
+Dajao,Ceratopogonidae
+Dajao,Hemerodromia
+Dajao,Maruina
+Dajao,Diptera
+Dajao,Leptophlebiidae
+Dajao,Ephe. Alas
+Dajao,Ephe. Patas
+Dajao,Ephe. Abdomen
+Dajao,Trichoptera
+Dajao,Alisotrichia
+Dajao,Hydroptila
+Dajao,Glossosomatidae
+Dajao,Chimarra
+Dajao,Animal tissue (indet)
+Dajao,Amorphous detritus
+Dajao,Aphido
+Dajao,Nematoda
+Dajao,Homoptera
+Poecilidae,Alga verde
+Poecilidae,Alga filamentosa
+Poecilidae,Diatoms
+Poecilidae,Chironomidae
+Poecilidae,Alisotrichia
+Poecilidae,Hydroptila
+Poecilidae,Amorphous detritus
+Poecilidae,CPOM
+Gobidae,Macroalga 1
+Gobidae,Macroalga 2
+Gobidae,Macroalga 3
+Gobidae,Alga roja
+Gobidae,Alga filamentosa
+Gobidae,Diatoms
+Gobidae,Chironomidae
+Gobidae,Chironomi
+Gobidae,Tanypodinae
+Gobidae,Tanitarsini
+Gobidae,Ortochladiinae
+Gobidae,Hemerodromia
+Gobidae,Caenis
+Gobidae,Alisotrichia
+Gobidae,Hydroptila
+Gobidae,Neotrichia
+Gobidae,Smicridea
+Gobidae,Animal tissue (indet)
+Gobidae,Thiaridae
+Gobidae,Animal tissue (terrestrial)
+Gobidae,Amorphous detritus
+Gobidae,Hymenoptera
+Gobidae,FPOM
+Gobidae,CPOM
+Guabina,Diatoms
+Guabina,Hemerodromia
+Guabina,Neargyraptis
+Guabina,Petrophila
+Guabina,Macrelmis
+Guabina,Baetidae
+Guabina,Leptophlebiidae
+Guabina,Caenis
+Guabina,Trichoptera
+Guabina,Hydroptila
+Guabina,Neotrichia
+Guabina,Glossosomatidae
+Guabina,Atopsyche
+Guabina,Animal tissue (indet)
+Guabina,Animal tissue (terrestrial)
+Guabina,Amorphous detritus
+Tilapia,Diatoms
+Tilapia,Acaro
+Tilapia,Chironomi
+Tilapia,Tanypodinae
+Tilapia,Tanitarsini
+Tilapia,Ortochladiinae
+Tilapia,Petrophila
+Tilapia,Enallagma
+Tilapia,Caenis
+Tilapia,Hydroptila
+Tilapia,Neotrichia
+Tilapia,Smicridea
+Tilapia,Animal tissue (indet)
+Tilapia,Planorbiidae
+Tilapia,Thiaridae
+Tilapia,Amorphous detritus
+Anguila,Chironomidae
+Anguila,Baetidae
+Anguila,Leptophlebiidae
+Anguila,Thiaridae
+Anguila,Animal tissue (terrestrial)
+Anguila,Camaron
+Sicydium plumieri,Macroalga 1
+Sicydium plumieri,Macroalga 2
+Sicydium plumieri,Alga roja
+Sicydium plumieri,Alga filamentosa
+Sicydium plumieri,Chironomidae
+Sicydium plumieri,Glossosomatidae
+Sicydium plumieri,Amorphous detritus
