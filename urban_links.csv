@@ -1,266 +1,223 @@
-﻿resource,consumer
-Americabaetis,Fungi
-Americabaetis,Amorphous detritus
-Americabaetis,FPOM
-Americabaetis,Animal tissue
-Americabaetis,Diatoms
-Americabaetis,Alga
-Caenis,Fungi
-Caenis,Amorphous detritus
-Caenis,FPOM
-Caenis,Animal tissue
-Caenis,Diatoms
-Caenis,Alga
-Orthocladinae,Fungi
-Orthocladinae,Amorphous detritus
-Orthocladinae,FPOM
-Orthocladinae,Animal tissue
-Orthocladinae,Diatoms
-Orthocladinae,Alga
-Tarebia,Fungi
-Tarebia,Amorphous detritus
-Tarebia,FPOM
-Tarebia,Animal tissue
-Tarebia,Diatoms
-Tarebia,Alga
-Tarebia,Sediment
-Tanypodinae,Fungi
-Tanypodinae,Amorphous detritus
-Tanypodinae,FPOM
-Tanypodinae,Animal tissue
-Tanypodinae,Diatoms
-Tanypodinae,Alga
-Tanypodinae,CPOM
-Chimarra,Fungi
-Chimarra,Amorphous detritus
-Chimarra,FPOM
-Chimarra,Animal tissue
-Chimarra,Diatoms
-Chimarra,Alga
-Chimarra,CPOM
-Chironominii,Fungi
-Chironominii,Amorphous detritus
-Chironominii,FPOM
-Chironominii,Animal tissue
-Chironominii,Diatoms
-Chironominii,Alga
-Chironominii,CPOM
-Enallagma coecum,Fungi
-Enallagma coecum,Amorphous detritus
-Enallagma coecum,FPOM
-Enallagma coecum,Animal tissue
-Enallagma coecum,Diatoms
-Enallagma coecum,Alga
-Enallagma coecum,CPOM
-Farrodes taino,Fungi
-Farrodes taino,Amorphous detritus
-Farrodes taino,FPOM
-Farrodes taino,Diatoms
-Farrodes taino,Alga
-Macrothemis,Fungi
-Macrothemis,Amorphous detritus
-Macrothemis,Plant tissue
-Macrothemis,Animal tissue
-Macrothemis,Diatoms
-Macrothemis,Alga
-Ceratopogonidae,Fungi
-Ceratopogonidae,Amorphous detritus
-Ceratopogonidae,FPOM
-Ceratopogonidae,Animal tissue
-Ceratopogonidae,Diatoms
-Ceratopogonidae,Alga
-Ceratopogonidae,CPOM
-Allisotrichia,Fungi
-Allisotrichia,Amorphous detritus
-Allisotrichia,FPOM
-Allisotrichia,Animal tissue
-Allisotrichia,Diatoms
-Allisotrichia,Alga
-Allisotrichia,CPOM
-Cariboptila,Fungi
-Cariboptila,Amorphous detritus
-Cariboptila,FPOM
-Cariboptila,Diatoms
-Cariboptila,Alga
-Phylloicus pulchrus,Fungi
-Phylloicus pulchrus,Amorphous detritus
-Phylloicus pulchrus,FPOM
-Phylloicus pulchrus,Diatoms
-Phylloicus pulchrus,Alga
-Phylloicus pulchrus,CPOM
-Petrophila,Amorphous detritus
-Petrophila,FPOM
-Petrophila,Animal tissue
-Petrophila,Diatoms
-Petrophila,Alga
-Simulium,Fungi
-Simulium,Amorphous detritus
-Simulium,FPOM
-Simulium,Animal tissue
-Simulium,Diatoms
-Simulium,Alga
-Simulium,CPOM
-Hydroptila,Fungi
-Hydroptila,Amorphous detritus
-Hydroptila,FPOM
-Hydroptila,Animal tissue
-Hydroptila,Diatoms
-Hydroptila,Alga
-Hydroptila,CPOM
-Hemerodromia,Fungi
-Hemerodromia,Amorphous detritus
-Hemerodromia,FPOM
-Hemerodromia,Animal tissue
-Hemerodromia,Diatoms
-Hemerodromia,Alga
-Neotrichia,Fungi
-Neotrichia,Amorphous detritus
-Neotrichia,FPOM
-Neotrichia,Animal tissue
-Neotrichia,Diatoms
-Neotrichia,Alga
-Neotrichia,CPOM
-Maruina,Fungi
-Maruina,Amorphous detritus
-Maruina,FPOM
-Maruina,Animal tissue
-Maruina,Diatoms
-Maruina,Alga
-Smicridea,Amorphous detritus
-Smicridea,CPOM
-Smicridea,Diatoms
-Smicridea,Alga
-Cloeodes,Fungi
-Cloeodes,Amorphous detritus
-Cloeodes,FPOM
-Cloeodes,Animal tissue
-Cloeodes,Diatoms
-Cloeodes,Alga
-Cloeodes,CPOM
-Limonia,Amorphous detritus
-Limonia,Diatoms
-Oligochaeta,Fungi
-Oligochaeta,Amorphous detritus
-Oligochaeta,Diatoms
-Oligochaeta,Sediment
-Camaron,Fungi
-Camaron,Amorphous detritus
-Camaron,FPOM
-Camaron,Animal tissue
-Camaron,Diatoms
-Camaron,Alga
-Camaron,CPOM
-Physa,Amorphous detritus
-Physa,FPOM
-Physa,CPOM
-Physa,Animal tissue
-Physa,Diatoms
-Forcypominae,Fungi
-Forcypominae,Amorphous detritus
-Forcypominae,FPOM
-Forcypominae,Animal tissue
-Forcypominae,Diatoms
-Forcypominae,Alga
-Dajao,Alga verde
-Dajao,Alga roja
-Dajao,Diatoms
-Dajao,Chironomidae
-Dajao,Chironomi
-Dajao,Tanypodinae
-Dajao,Tanitarsini
-Dajao,Ortochladiinae
-Dajao,Ceratopogonidae
-Dajao,Hemerodromia
-Dajao,Maruina
-Dajao,Diptera
-Dajao,Leptophlebiidae
-Dajao,Ephe. Alas
-Dajao,Ephe. Patas
-Dajao,Ephe. Abdomen
-Dajao,Trichoptera
-Dajao,Alisotrichia
-Dajao,Hydroptila
-Dajao,Glossosomatidae
-Dajao,Chimarra
-Dajao,Animal tissue (indet)
-Dajao,Amorphous detritus
-Dajao,Aphido
-Dajao,Nematoda
-Dajao,Homoptera
-Poecilidae,Alga verde
-Poecilidae,Alga filamentosa
-Poecilidae,Diatoms
-Poecilidae,Chironomidae
-Poecilidae,Alisotrichia
-Poecilidae,Hydroptila
-Poecilidae,Amorphous detritus
-Poecilidae,CPOM
-Gobidae,Macroalga 1
-Gobidae,Macroalga 2
-Gobidae,Macroalga 3
-Gobidae,Alga roja
-Gobidae,Alga filamentosa
-Gobidae,Diatoms
-Gobidae,Chironomidae
-Gobidae,Chironomi
-Gobidae,Tanypodinae
-Gobidae,Tanitarsini
-Gobidae,Ortochladiinae
-Gobidae,Hemerodromia
-Gobidae,Caenis
-Gobidae,Alisotrichia
-Gobidae,Hydroptila
-Gobidae,Neotrichia
-Gobidae,Smicridea
-Gobidae,Animal tissue (indet)
-Gobidae,Thiaridae
-Gobidae,Animal tissue (terrestrial)
-Gobidae,Amorphous detritus
-Gobidae,Hymenoptera
-Gobidae,FPOM
-Gobidae,CPOM
-Guabina,Diatoms
-Guabina,Hemerodromia
-Guabina,Neargyraptis
-Guabina,Petrophila
-Guabina,Macrelmis
-Guabina,Baetidae
-Guabina,Leptophlebiidae
-Guabina,Caenis
-Guabina,Trichoptera
-Guabina,Hydroptila
-Guabina,Neotrichia
-Guabina,Glossosomatidae
-Guabina,Atopsyche
-Guabina,Animal tissue (indet)
-Guabina,Animal tissue (terrestrial)
-Guabina,Amorphous detritus
-Tilapia,Diatoms
-Tilapia,Acaro
-Tilapia,Chironomi
-Tilapia,Tanypodinae
-Tilapia,Tanitarsini
-Tilapia,Ortochladiinae
-Tilapia,Petrophila
-Tilapia,Enallagma
-Tilapia,Caenis
-Tilapia,Hydroptila
-Tilapia,Neotrichia
-Tilapia,Smicridea
-Tilapia,Animal tissue (indet)
-Tilapia,Planorbiidae
-Tilapia,Thiaridae
-Tilapia,Amorphous detritus
-Anguila,Chironomidae
-Anguila,Baetidae
-Anguila,Leptophlebiidae
-Anguila,Thiaridae
-Anguila,Animal tissue (terrestrial)
-Anguila,Camaron
-Sicydium plumieri,Macroalga 1
-Sicydium plumieri,Macroalga 2
-Sicydium plumieri,Alga roja
-Sicydium plumieri,Alga filamentosa
-Sicydium plumieri,Chironomidae
-Sicydium plumieri,Glossosomatidae
-Sicydium plumieri,Amorphous detritus
+﻿resource,consumer,
+Diatoms,Chironominii,
+Alga,Chironominii,
+CPOM,Chironominii,
+Fungi,Enallagma coecum,
+Amorphous detritus,Enallagma coecum,
+FPOM,Enallagma coecum,
+Animal tissue,Enallagma coecum,
+Diatoms,Enallagma coecum,
+Alga,Enallagma coecum,
+CPOM,Enallagma coecum,
+Fungi,Farrodes taino,
+Amorphous detritus,Farrodes taino,
+FPOM,Farrodes taino,
+Diatoms,Farrodes taino,
+Alga,Farrodes taino,
+Fungi,Macrothemis,
+Amorphous detritus,Macrothemis,
+Plant tissue,Macrothemis,
+Animal tissue,Macrothemis,
+Diatoms,Macrothemis,
+Alga,Macrothemis,
+Fungi,Ceratopogonidae,
+Amorphous detritus,Ceratopogonidae,
+FPOM,Ceratopogonidae,
+Animal tissue,Ceratopogonidae,
+Diatoms,Ceratopogonidae,
+Alga,Ceratopogonidae,
+CPOM,Ceratopogonidae,
+Fungi,Allisotrichia,
+Amorphous detritus,Allisotrichia,
+FPOM,Allisotrichia,
+Animal tissue,Allisotrichia,
+Diatoms,Allisotrichia,
+Alga,Allisotrichia,
+CPOM,Allisotrichia,
+Fungi,Cariboptila,
+Amorphous detritus,Cariboptila,
+FPOM,Cariboptila,
+Diatoms,Cariboptila,
+Alga,Cariboptila,
+Fungi,Phylloicus pulchrus,
+Amorphous detritus,Phylloicus pulchrus,
+FPOM,Phylloicus pulchrus,
+Diatoms,Phylloicus pulchrus,
+Alga,Phylloicus pulchrus,
+CPOM,Phylloicus pulchrus,
+Amorphous detritus,Petrophila,
+FPOM,Petrophila,
+Animal tissue,Petrophila,
+Diatoms,Petrophila,
+Alga,Petrophila,
+Fungi,Simulium,
+Amorphous detritus,Simulium,
+FPOM,Simulium,
+Animal tissue,Simulium,
+Diatoms,Simulium,
+Alga,Simulium,
+CPOM,Simulium,
+Fungi,Hydroptila,
+Amorphous detritus,Hydroptila,
+FPOM,Hydroptila,
+Animal tissue,Hydroptila,
+Diatoms,Hydroptila,
+Alga,Hydroptila,
+CPOM,Hydroptila,
+Fungi,Hemerodromia,
+Amorphous detritus,Hemerodromia,
+FPOM,Hemerodromia,
+Animal tissue,Hemerodromia,
+Diatoms,Hemerodromia,
+Alga,Hemerodromia,
+Fungi,Neotrichia,
+Amorphous detritus,Neotrichia,
+FPOM,Neotrichia,
+Animal tissue,Neotrichia,
+Diatoms,Neotrichia,
+Alga,Neotrichia,
+CPOM,Neotrichia,
+Fungi,Maruina,
+Amorphous detritus,Maruina,
+FPOM,Maruina,
+Animal tissue,Maruina,
+Diatoms,Maruina,
+Alga,Maruina,
+Amorphous detritus,Smicridea,
+CPOM,Smicridea,
+Diatoms,Smicridea,
+Alga,Smicridea,
+Fungi,Cloeodes,
+Amorphous detritus,Cloeodes,
+FPOM,Cloeodes,
+Animal tissue,Cloeodes,
+Diatoms,Cloeodes,
+Alga,Cloeodes,
+CPOM,Cloeodes,
+Amorphous detritus,Limonia,
+Diatoms,Limonia,
+Fungi,Oligochaeta,
+Amorphous detritus,Oligochaeta,
+Diatoms,Oligochaeta,
+Sediment,Oligochaeta,
+Fungi,Camaron,
+Amorphous detritus,Camaron,
+FPOM,Camaron,
+Animal tissue,Camaron,
+Diatoms,Camaron,
+Alga,Camaron,
+CPOM,Camaron,
+Amorphous detritus,Physa,
+FPOM,Physa,
+CPOM,Physa,
+Animal tissue,Physa,
+Diatoms,Physa,
+Fungi,Forcypominae,
+Amorphous detritus,Forcypominae,
+FPOM,Forcypominae,
+Animal tissue,Forcypominae,
+Diatoms,Forcypominae,
+Alga,Forcypominae,
+Alga verde,Dajao,
+Alga roja,Dajao,
+Diatoms,Dajao,
+Chironomidae,Dajao,
+Chironomi,Dajao,
+Tanypodinae,Dajao,
+Tanitarsini,Dajao,
+Ortochladiinae,Dajao,
+Ceratopogonidae,Dajao,
+Hemerodromia,Dajao,
+Maruina,Dajao,
+Diptera,Dajao,
+Leptophlebiidae,Dajao,
+Ephe. Alas,Dajao,
+Ephe. Patas,Dajao,
+Ephe. Abdomen,Dajao,
+Trichoptera,Dajao,
+Alisotrichia,Dajao,
+Hydroptila,Dajao,
+Glossosomatidae,Dajao,
+Chimarra,Dajao,
+Animal tissue (indet),Dajao,
+Amorphous detritus,Dajao,
+Aphido,Dajao,
+Nematoda,Dajao,
+Homoptera,Dajao,
+Alga verde,Poecilidae,
+Alga filamentosa,Poecilidae,
+Diatoms,Poecilidae,
+Chironomidae,Poecilidae,
+Alisotrichia,Poecilidae,
+Hydroptila,Poecilidae,
+Amorphous detritus,Poecilidae,
+CPOM,Poecilidae,
+Macroalga 1,Gobidae,
+Macroalga 2,Gobidae,
+Macroalga 3,Gobidae,
+Alga roja,Gobidae,
+Alga filamentosa,Gobidae,
+Diatoms,Gobidae,
+Chironomidae,Gobidae,
+Chironomi,Gobidae,
+Tanypodinae,Gobidae,
+Tanitarsini,Gobidae,
+Ortochladiinae,Gobidae,
+Hemerodromia,Gobidae,
+Caenis,Gobidae,
+Alisotrichia,Gobidae,
+Hydroptila,Gobidae,
+Neotrichia,Gobidae,
+Smicridea,Gobidae,
+Animal tissue (indet),Gobidae,
+Thiaridae,Gobidae,
+Animal tissue (terrestrial),Gobidae,
+Amorphous detritus,Gobidae,
+Hymenoptera,Gobidae,
+FPOM,Gobidae,
+CPOM,Gobidae,
+Diatoms,Guabina,
+Hemerodromia,Guabina,
+Neargyraptis,Guabina,
+Petrophila,Guabina,
+Macrelmis,Guabina,
+Baetidae,Guabina,
+Leptophlebiidae,Guabina,
+Caenis,Guabina,
+Trichoptera,Guabina,
+Hydroptila,Guabina,
+Neotrichia,Guabina,
+Glossosomatidae,Guabina,
+Atopsyche,Guabina,
+Animal tissue (indet),Guabina,
+Animal tissue (terrestrial),Guabina,
+Amorphous detritus,Guabina,
+Diatoms,Tilapia,
+Acaro,Tilapia,
+Chironomi,Tilapia,
+Tanypodinae,Tilapia,
+Tanitarsini,Tilapia,
+Ortochladiinae,Tilapia,
+Petrophila,Tilapia,
+Enallagma,Tilapia,
+Caenis,Tilapia,
+Hydroptila,Tilapia,
+Neotrichia,Tilapia,
+Smicridea,Tilapia,
+Animal tissue (indet),Tilapia,
+Planorbiidae,Tilapia,
+Thiaridae,Tilapia,
+Amorphous detritus,Tilapia,
+Chironomidae,Anguila,
+Baetidae,Anguila,
+Leptophlebiidae,Anguila,
+Thiaridae,Anguila,
+Animal tissue (terrestrial),Anguila,
+Camaron,Anguila,
+Macroalga 1,Sicydium plumieri,
+Macroalga 2,Sicydium plumieri,
+Alga roja,Sicydium plumieri,
+Alga filamentosa,Sicydium plumieri,
+Chironomidae,Sicydium plumieri,
+Glossosomatidae,Sicydium plumieri,
+Amorphous detritus,Sicydium plumieri,
