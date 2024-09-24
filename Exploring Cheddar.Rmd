@@ -73,8 +73,8 @@ summary(food_web)
 #YIPPEE
 
 NumberOfNodes(food_web) # equivalent to # taxon
-NumberOfNodesByClass(food_web)
-FractionOfNodesByClass(food_web)
+#NumberOfNodesByClass(food_web)
+#FractionOfNodesByClass(food_web)
 
 NumberOfTrophicLinks(food_web)
 LinkageDensity(food_web)
@@ -85,11 +85,12 @@ PlotWebByLevel(food_web)
 For the nodes data, I will be just taking the average of the mm and putting it in a new excel sheet 
 For the links, I am including each food item that was observed in the stomach (excluding 'other'). Later on, I will make a new analysis removing food items that were not significant in the diet
 
-```{r urbanstream}
+```{r urban_stream}
 dir <- "/Users/reillyconnelly/Desktop/THESIS"
 # Manually read the nodes.csv file
 urban_nodes <- read.csv("urban_nodes.csv", header = TRUE, stringsAsFactors = FALSE) 
 urban_links <- read.csv("urban_links.csv", header = TRUE, stringsAsFactors = FALSE)
+
 
 urban_web <- Community(
   properties = list(
@@ -101,21 +102,40 @@ urban_web <- Community(
   trophic.links = urban_links          # Provide trophic links directly
 )
 
-
-
 # Check if the community loaded correctly
 summary(urban_web)
 
 #YIPPEE
 
 NumberOfNodes(urban_web) # equivalent to # taxon
-NumberOfNodesByClass(urban_web)
-FractionOfNodesByClass(urban_web)
+#NumberOfNodesByClass(urban_web)
+#FractionOfNodesByClass(urban_web)
 
 NumberOfTrophicLinks(urban_web)
 LinkageDensity(urban_web)
 DirectedConnectance(urban_web)
 
 PlotWebByLevel(urban_web)
+```
+
+```{r forested_stream}
+forested_nodes <- read.csv("forested_nodes.csv", header = TRUE, stringsAsFactors = FALSE) 
+forested_links <- read.csv("forested_links.csv", header = TRUE, stringsAsFactors = FALSE)
+
+
+forested_web <- Community(
+  properties = list(
+    title = "Forested Stream Food Web",
+    location = "Costa Rica",     # Overall community location
+    ecosystem = "Tropical Rainforest",
+    sampling_year = 2023),
+  nodes = forested_nodes ,# Provide nodes directly
+  trophic.links = forested_links          # Provide trophic links directly
+)
+
+
+summary(forested_web)
+
+PlotWebByLevel(forested_web)
 ```
 
