@@ -1,0 +1,159 @@
+---
+title: "Honor Thesis"
+author: "Reilly Connelly"
+output: html_document
+date: "2024-11-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(GGally)
+
+#library(patchwork)
+
+streams <- read_excel("stream_data.xlsx")
+head(streams)
+```
+
+## R Markdown
+
+
+```{r models}
+mod1 <- lm(links~species, data=streams)
+summary(mod1)
+shapiro.test(residuals(mod1))
+
+
+mod2 <- lm(species~connectance, data=streams)
+summary(mod2)
+shapiro.test(residuals(mod2))
+```
+
+## Including Plots
+
+```{r plot1, echo=FALSE}
+a <- ggplot(streams, aes(x = species, 
+                    y = links, 
+                    color = region)) +
+  
+  geom_point(size = 3) +  
+  geom_smooth(method = "lm", se = F) +
+  
+  labs(
+    title = "Species and links by region",
+    x = "species",
+    y = "Number of link",
+    color = "region") +
+  theme_minimal() +
+  theme(legend.position = "top") 
+
+a
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+# Create the plot with linear models for both regions on the same plot
+# Create the plot with linear models for both regions on the same plot
+# Fit an inverse model for each region
+  model_results <- streams %>%
+  group_by(region) %>%
+  do(model = nls(species ~ a / connectance + b, data = ., start = list(a = 1, b = 1)))
+
+# Generate predicted values for plotting
+predicted_data <- streams %>%
+  group_by(region) %>%
+  do({
+    model <- nls(connectance ~ a / species + b, data = ., start = list(a = 1, b = 0))
+    data.frame(species = seq(min(.$species), max(.$species), length.out = 100),
+               connectance = predict(model, newdata = data.frame(species = seq(min(.$species), max(.$species), length.out = 100))),
+               region = unique(.$region))
+  })
+
+# Plot the data and fitted curves
+b <- ggplot(streams, aes(x = species, y = connectance, color = region)) +
+  geom_point(size = 3) +  # Data points
+  geom_line(data = predicted_data, aes(x = species, y = connectance, color = region), size = 1) +  # Fitted inverse lines
+  labs(
+    x = "Number of Species",
+    y = "Connectance",
+    color = "Region",
+    title = ""
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top")
+
+b
+
+```
+
+
+```{r}
+# Connectance by stream order s
+ggplot(streams, aes(x = species, 
+                    y = links, 
+                    color = order)) +
+  
+  geom_point(size = 3) +  
+  geom_smooth(method = "lm", se = F) +
+  
+  labs(
+    title = "Connectance by Order",
+    x = "Connectance",
+    y = "Number of Species",
+    color = "order") +
+  theme_minimal() +
+  theme(legend.position = "top") 
+```
+```{r}
+# region vs species count 
+# Show the number of species across different regions. This could reveal biodiversity levels in each region and help you compare species richness.
+library(ggplot2)
+ggplot(streams, aes(x = region, fill = order)) +
+  geom_bar() +
+  labs(title = "Species Count by Region and Order",
+       x = "Region", y = "Species Count") +
+  theme_minimal()
+
+```
+```{r}
+ggplot(streams, aes(x = region, y = connectance, fill = order)) +
+  geom_boxplot() +
+  labs(title = "Connectance by Region and Order",
+       x = "Region", y = "Link Density") +
+  theme_minimal()
+
+
+```
+```{r}
+#  Compare connectance across regions. This metric can give insights into ecosystem stability, as more connected networks are often more resilient.
+ggplot(streams, aes(x = region, y = connectance)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(title = "Connectance by Region",
+       x = "Region", y = "Connectance") +
+  theme_minimal()
+
+```
+```{r}
+data_summary <- streams %>%
+  group_by(region, order) %>%
+  summarise(species_count = sum(species))
+
+ggplot(data_summary, aes(x = region, y = order, fill = species_count)) +
+  geom_tile() +
+  labs(title = "Species Richness by Region and Order",
+       x = "Region", y = "Order", fill = "Species Count") +
+  theme_minimal()
+
+```
+
+```{r}
+# Show correlations between numeric variables like species, links, link_density, and connectance to identify any strong relationships.
+numeric_data <- streams %>% select(species, links, link_density, connectance)
+ggpairs(numeric_data, title = "Correlation Matrix of Ecosystem Variables")
+```
+
