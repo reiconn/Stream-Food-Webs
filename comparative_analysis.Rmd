@@ -1,0 +1,310 @@
+---
+title: "Comparative Analysis"
+output: html_document
+date: "2025-03-31"
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = FALSE)
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+library(broom)
+library(car)
+
+data <- read_xlsx('data.xlsx', sheet='final_data')
+
+# Exclude the last row (Yule et al. 2010) because data includes algae as species richness which influences the metrics
+# Results significant with and without it 
+data <- data[-nrow(data), ]
+data <- data %>%
+  mutate(log_num_spec = log(num_spec),
+         log_num_link = log(num_link), 
+         log_connect = log(connect))
+head(data)
+```
+
+```{r residuals, echo=TRUE}
+# Create a new column to mark "our study"
+data$highlight <- ifelse(data$paper == "our study", "Our Study", "Other Studies")
+
+# Fit the linear model
+model <- lm(log_connect ~ log_num_spec, data = data)
+data$residuals <- resid(model)
+
+# Plot residuals with highlighted points
+ggplot(data, aes(x = region, y = residuals, fill = region)) + 
+  geom_boxplot(alpha = 0.6, outlier.shape = NA) +  # Boxplot without showing default outliers
+  geom_jitter(aes(color = highlight), width = 0.2, alpha = 0.7, size = 3) +  # Jittered points
+  scale_fill_manual(values = c("tropical" = "#E69F00", "temperate" = "#0072B2")) +  
+  scale_color_manual(values = c("Our Study" = "red", "Other Studies" = "black")) +  # Custom colors
+  labs(x = "Region", y = "Residuals", title = "Residual Comparison of Food Web Connectance",
+       color = "Study Type") +
+  theme_minimal() +
+  theme(legend.position = "top")
+
+```
+
+We use ANCOVA because it allows us to compare the slopes of the relationship between species richness and connectance while controlling for the effect of region. Unlike simply comparing individual regression slopes, ANCOVA accounts for both the differences in the slopes and the intercepts between the regions. This test combines the effects of both the categorical variable (region) and the continuous variable (species richness) in a single model, providing a more robust and accurate comparison. By doing this, ANCOVA helps us determine if the relationship between species richness and connectance differs significantly between regions, while controlling for the influence of region itself.
+
+## Number of Links vs. Species Richness
+
+This graph models the **linear regression line** predicting log_num_links by log_num_spec **within each region**, just based on the **raw data**
+
+```{r species vs links}
+# ANCOVA
+mod_links <- lm(log_num_link ~ log_num_spec * region, data = data)
+summary(mod_links)
+
+# Create the plot with linear models for both regions on the same plot
+a <- ggplot(data, aes(x = log_num_spec, y = log_num_link, 
+                      color = region)) +
+  geom_point(size = 3) +  # Points colored by region
+  geom_smooth(method = "lm", se = T) +  # Add separate linear models for each region
+  labs(
+    title = "Links Tropical vs. Temperate Regions",
+    x = "Log Number of Species",
+    y = "Log Number of Links",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top")  # Move the legend to the top
+a
+```
+
+```{r}
+# diagnostics on model
+data_aug <- augment(mod_links)
+
+# Plot Cook's distance
+ggplot(data_aug, aes(x = .cooksd)) +
+  geom_histogram(bins = 30, fill = "tomato") +
+  labs(title = "Cook's Distance for Influential Points")
+
+# View top influential points
+data_aug %>%
+  arrange(desc(.cooksd)) %>%
+  head(10) 
+
+data %>%
+  filter(num_spec > 75) %>%
+  select(num_spec, num_link, region, paper) %>%
+  arrange(desc(num_spec))
+
+library(ggrepel)
+
+ggplot(data, aes(x = num_spec, y = num_link, color = region)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = TRUE) +
+  geom_text_repel(
+    data = data %>% filter(num_spec > 75),
+    aes(label = paper), 
+    size = 3, max.overlaps = 10
+  ) +
+  labs(title = "High-Species Food Webs by Source Paper",
+       x = "Number of Species", y = "Number of Links") +
+  theme_minimal()
+```
+
+```{r}
+low_spec <- data |> 
+  filter(num_spec < 75) |> 
+  select(log_num_spec, log_num_link, region, paper)
+
+low_spec_mod <- lm(log_num_link ~ log_num_spec * region, data = low_spec)
+summary(mod_links)
+
+ggplot(low_spec, aes(x = num_spec, y = num_link, 
+                      color = region)) +
+  geom_point(size = 3) +  # Points colored by region
+  geom_smooth(method = "lm", se = T) +  # Add separate linear models for each region
+  labs(
+    title = "Links Tropical vs. Temperate Regions",
+    x = "Number of Species",
+    y = "Number of Links",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top") 
+```
+
+The significant interaction term (p = 0.000566) shows that species richness effects the number of links differently across regions (i.e. the effect of region on num_link). Temperate streams have a steeper increase in links (slope = 1.7022), while tropical streams have a slower increase (slope = 1.1655) but start with more links. This suggests temperate streams form interactions more flexibly, whereas tropical streams may have more constrained or specialized networks.
+
+Summary of the Slopes:
+
+-   Temperate Region:
+
+    -   Slope = log_num_spec + coefficient = 1.7022
+
+    -   In temperate regions, for every 1-unit increase in log number of species, log number of links increases by 1.702.
+
+-   Tropical Region:
+
+    -   Slope = 1.7022 + (-0.5367) = 1.1655
+
+    -   In tropical regions, for every 1-unit increase in log number of species, log number of links increases by 1.1655
+
+## Species Richness--Connectance Relationship
+
+This graph models the **linear regression line** predicting log_connect by log_num_spec **within each region**, just based on the **raw data**
+
+```{r species vs connectance}
+# ANCOVA
+mod_connect <- lm(log_connect ~ log_num_spec * region, data = data)
+summary(mod_connect)
+
+# Plot log-log relationship with regression lines and confidence intervals
+ggplot(data, aes(x = log_num_spec, y = log_connect, color = region)) +
+  geom_point(alpha = 0.6, size = 3) +  # Add points with transparency
+  geom_smooth(method = "lm", se = TRUE, fullrange = TRUE, alpha = 0.2) +  # Regression lines with confidence intervals
+  scale_color_manual(values = c("tropical" = "#E69F00", "temperate" = "#0072B2")) +  # Custom colors
+  labs(x = "Log Number of Species", 
+       y = "Log Connectance", 
+       title = "Connectance in Tropical vs. Temperate Regions",
+       color = "Region") +
+  theme_minimal() +
+  theme(legend.position = "top", text = element_text(size = 14))
+
+# Extracting Slopes from the ANCOVA Model:
+# Extracting coefficients from the ANCOVA model
+coefficients_ancova <- coef(mod_connect)
+
+# Slope for temperate region
+slope_temperate <- coefficients_ancova["log_num_spec"]
+cat("Slope for Temperate Region:", slope_temperate, "\n")
+
+# Slope for tropical region (sum of log_num_spec and log_num_spec:regiontropical)
+slope_tropical <- coefficients_ancova["log_num_spec"] + coefficients_ancova["log_num_spec:regiontropical"]
+cat("Slope for Tropical Region:", slope_tropical, "\n")
+```
+
+The significant interaction term (p = 0.000642) shows that the relationship between species richness and connectance is different across regions (i.e. the effect of region on log_num_spec). Tropical streams have a steeper decrease in log connectance (slope = -0.8343), while tropical streams have a slower decrease (slope = -0.3014).
+
+Summary of the Slopes:
+
+-   Temperate Region:
+
+    -   Slope = -0.3014
+
+    -   In temperate regions, for every 1-unit increase in log number of species, log connectance decreases by 0.3014.
+
+-   Tropical Region:
+
+    -   Slope = -0.3014 + (-0.53294) = -0.8343
+
+    -   In tropical regions, for every 1-unit increase in log number of species, log connectance decreases by 0.8343.
+
+```{r nls}
+# Create the plot with linear models for both regions on the same plot
+# Fit an inverse model for each region
+  model_results <- data %>%
+  group_by(region) %>%
+  do(model = nls(num_spec ~ a / connect + b, data = ., start = list(a = 1, b = 1)))
+
+# Generate predicted values for plotting
+predicted_data <- data %>%
+  group_by(region) %>%
+  do({
+    model <- nls(connect ~ a / num_spec + b, data = ., start = list(a = 1, b = 0))
+    data.frame(num_spec = seq(min(.$num_spec), max(.$num_spec), length.out = 100),
+               connect = predict(model, newdata = data.frame(num_spec = seq(min(.$num_spec), max(.$num_spec), length.out = 100))),
+               region = unique(.$region))
+  })
+
+# Plot the data and fitted curves
+b <- ggplot(data, aes(x = num_spec, y = connect, color = region)) +
+  geom_point(size = 3) +  # Data points
+  geom_line(data = predicted_data, aes(x = num_spec, y = connect, color = region), size = 1) +  # Fitted inverse lines
+  labs(
+    x = "Number of Species",
+    y = "Connectance",
+    color = "Region",
+    title = ""
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top") 
+b
+```
+
+The tropical region starts with a higher intercept (1.4789 higher on the log scale) than the temperate region. This suggests that at low species richness, tropical regions have more links than temperate regions. The slope for log number of species is lower in the tropical region by 0.5367 compared to the temperate region. This means that while tropical regions may have more links at lower species richness, the rate of increase in links is slower in tropical regions compared to temperate ones.
+
+```{r assumptions_link}
+# Residual plots to check assumptions
+par(mfrow=c(2,2))
+plot(mod_links)
+
+# Check normality of residuals
+hist(residuals(mod_links), main = "Histogram of Residuals", xlab = "Residuals", col = "lightblue")
+qqnorm(residuals(mod_links))
+qqline(residuals(mod_links))
+
+# Extract residuals
+residuals_links <- residuals(mod_links)
+# Perform Shapiro-Wilk test for normality
+shapiro_test <- shapiro.test(residuals_links)
+shapiro_test
+
+# high vif but that's exacly what we're trying to show 
+vif(mod_links)
+```
+
+Assumptions:
+
+1 Linearity
+
+-   The relationship between species richness and connectance is linear within each region
+
+2 **Homoscedasticity** (equal variance of residuals): Plot residuals vs fitted values to check for patterns
+
+-   no clear pattern
+
+**3 Normality of Residuals** (residuals should be normally distributed)
+
+-   QQ plot looks normal
+
+-   Shapiro-Wilk returns a high p-value
+
+4 Independence
+
+-   each stream represented once to reduce spatial autocorrelation
+
+```{r assumptions_connect}
+# Residual plots to check assumptions
+par(mfrow=c(2,2))
+plot(mod_connect)
+
+# Check normality of residuals
+hist(residuals(mod_connect), main = "Histogram of Residuals", xlab = "Residuals", col = "lightblue")
+qqnorm(residuals(mod_connect))
+qqline(residuals(mod_connect))
+
+# Extract residuals
+residuals_ancova <- residuals(mod_connect)
+# Perform Shapiro-Wilk test for normality
+shapiro_test <- shapiro.test(residuals_ancova)
+shapiro_test
+
+# high vif but that's exacly what we're trying to show 
+vif(mod_connect)
+```
+
+Assumptions:
+
+1 Linearity
+
+-   The relationship between species richness and connectance is linear within each region
+
+2 **Homoscedasticity** (equal variance of residuals): Plot residuals vs fitted values to check for patterns
+
+-   no clear pattern, but skew left
+
+**3 Normality of Residuals** (residuals should be normally distributed)
+
+-   QQ plot looks normal
+
+-   Shapiro-Wilk returns a high p-value
+
+4 Independence
+
+-   each stream represented once to reduce spatial autocorrelation
