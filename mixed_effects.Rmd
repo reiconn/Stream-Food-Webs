@@ -1,0 +1,106 @@
+---
+title: "mixed model"
+output: html_document
+date: "2025-04-14"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(ggeffects)
+library(readxl)
+library(lme4)
+library(lmerTest) # adds p values to summary 
+data <- read_xlsx('data.xlsx', sheet='final_data')
+
+# Exclude the last row (Yule et al. 2010) because data includes algae as species richness which influences the metrics
+# Results significant with and without it 
+data <- data[-nrow(data), ]
+data <- data %>%
+  mutate(log_num_spec = log(num_spec),
+         log_num_link = log(num_link), 
+         log_connect = log(connect))
+head(data)
+```
+
+## Linear Mixed Model
+
+I used a linear mixed effects model here to examine whether food web structure differed by region while controlling for the variation between studies and different sampling methods (paper as a random effect)
+
+```{r , echo = FALSE}
+lme.mod <- lmer(log_num_link ~ log_num_spec * region + (1 | paper), data = data)
+summary(lme.mod)
+```
+
+The p-value 0.00888 for the interaction term, log_num_spec:regiontropical, in the log links model is significant, which suggests that the scaling of links with species differs between regions.
+
+log temperate links slope = 1.5766
+
+log tropical links slope = 1.5766 - 0.3074 = 1.2692
+
+```{r}
+# Get predictions from model
+preds <- ggpredict(lme.mod, terms = c("log_num_spec", "region"))
+
+ggplot(data, aes(x = log_num_spec, y = log_num_link, 
+                      color = region)) +
+  geom_point(alpha = 0.6, size = 2) +  # OG data points
+
+  geom_line(data = preds, aes(x = x, y = predicted, color = group), size = 1.2) +
+
+  labs(
+    title = "Predicted Log(Number of Links) by Region",
+    x = "Log(Number of Species)",
+    y = "Log(Number of Links)",
+    color = "Region",
+    fill = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+This graph shows the predicted log number of link values (slopes and intercepts) from the mixed effects model, lme.mod, averaging over the random effect (paper)
+
+```{r}
+lme.mod2 <- lmer(log_connect ~ log_num_spec * region + (1 | paper), data = data)
+summary(lme.mod2)
+```
+
+The p-value 0.00911 for the interaction term, log_num_spec:regiontropical, in the log connectance model is significant, which suggests that the scaling of connectance with species differs between regions.
+
+log temperate connectance slope = -0.42459
+
+log tropical links slope = -0.42459 - 0.30699 = -0.73158
+
+```{r}
+# Get predictions from model
+preds2 <- ggpredict(lme.mod2, terms = c("log_num_spec", "region"))
+ggplot(data, aes(x = log_num_spec, y = log_connect, 
+                      color = region)) +
+  geom_point(alpha = 0.6, size = 2) +  # OG data points
+
+  geom_line(data = preds2, aes(x = x, y = predicted, color = group), size = 1.2) +
+
+  labs(
+    title = "Predicted Log(Connectance) by Region",
+    x = "Log(Number of Species)",
+    y = "Log(Connectance)",
+    color = "Region",
+    fill = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+This graph shows the predicted log connectance values (slopes and intercepts) from the mixed effects model, lme.mod2, averaging over the random effect (paper)
+
+## Diagnostics
+```{r}
+plot(lme.mod)  # residuals vs fitted
+qqnorm(resid(lme.mod)); qqline(resid(lme.mod))  # normality check, tails deviate a bit implying heavy tails i think
+
+plot(lme.mod2)  
+qqnorm(resid(lme.mod2)); qqline(resid(lme.mod2)) # tails deviate a bit 
+```
+
