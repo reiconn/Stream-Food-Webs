@@ -1,0 +1,72 @@
+---
+title: "Cheddar Analysis"
+output: html_document
+date: "2024-08-30"
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(tidyverse)
+library(readxl)
+library(cheddar)
+```
+
+Files needed to run code: 
+- urban_nodes.csv
+- urban_links.csv
+- forested_nodes.csv
+- forested_links.csv
+
+The study sites are located in Puerto Rico; a tropical, Caribbean island largely composed of mountainous terrain. To conduct the food web analysis, 2 streams with contrasting conditions  were selected.
+
+Using the stream data collected, we will be looking at the:
+
+- Number of Species (S) - NumberOfNodesByClass() 
+- Number of Links (L) - NumberOfTrophicLinks()
+- Linkage Density (L/S) 
+- Connectance (C=L/S^2)
+
+Each node represents one species 
+
+## Río Piedras
+Río Piedras is the watershed that drains the San Juan Metropolitan Area; the capital city with a population of approximately 350,000 people.
+```{r urban_stream}
+dir <- "/Users/reillyconnelly/Desktop/THESIS"
+# Manually read the nodes.csv file
+urban_nodes <- read.csv("urban_nodes.csv", header = TRUE, stringsAsFactors = FALSE) 
+urban_links <- read.csv("urban_links.csv", header = TRUE, stringsAsFactors = FALSE)
+
+urban_web <- Community(
+  properties = list(
+    title = "Río Piedras Food Web",
+    location = "Puerto Rico",     # Overall community location
+    ecosystem = "Tropical Rainforest"),
+  nodes = urban_nodes ,# Provide nodes directly
+  trophic.links = urban_links          # Provide trophic links directly
+)
+
+summary(urban_web)
+PlotWebByLevel(urban_web)
+```
+
+## Quebrada Gatos
+Quebrada Gatos is a pristine stream located in El Yunque National Forest; a tropical rainforest in the Northeast region.
+```{r forested_stream}
+forested_nodes <- read.csv("forested_nodes.csv", header = TRUE, stringsAsFactors = FALSE) 
+forested_links <- read.csv("forested_links.csv", header = TRUE, stringsAsFactors = FALSE)
+
+forested_web <- Community(
+  properties = list(
+    title = "Quebrada Gatos",
+    location = "Puerto Rico",     # Overall community location
+    ecosystem = "Tropical Rainforest"),
+  nodes = forested_nodes ,# Provide nodes directly
+  trophic.links = forested_links          # Provide trophic links directly
+)
+
+summary(forested_web)
+PlotWebByLevel(forested_web)
+```
+
+We observe less diversity in forested streams because of primary production like algae. Urban streams in PR have a lot of nutrients that stimulate algae, causing diversity and more complexity. In contrast forested streams have a more closed canopy and less primary production resulting in comparatively less diversity. (i.e. less taxa, less complex, less species, high connectance) 
